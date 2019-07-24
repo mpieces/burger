@@ -34,6 +34,7 @@ var orm = {
         })
     }
 }
+// Insert into burgers(burger_name) values (?)
 //Helper function to convert object key/value pairs to SQL syntax
  function objToSql(ob) {
    var arr = [];
