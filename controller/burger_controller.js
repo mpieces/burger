@@ -10,12 +10,21 @@ router.get ('/', function(req,res){
 })
 
 router.put ('/burgers/:id', function(req, res) {
+    console.log("put request in controllers")
     var id = req.params.id;
     var condition = "id = " +id;
     burger.update ({
         devoured: 1
     },condition, function(data){
-        console.log(data);
+        console.log("data in the controllers: " +JSON.stringify(data));
+    })
+})
+
+router.post ('/burgers/create', function(req, res) {
+    console.log("buger name: " +req.body.burger_name);
+    burger.create(["burger_name"],[req.body.burger_name], function(res){
+        console.log(res);
+        res.redirect("/");
     })
 })
 

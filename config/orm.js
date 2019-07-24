@@ -8,29 +8,60 @@ var orm = {
     },
     update: function (table, colValues, condition, cb) {
         var query = "UPDATE  " +table;
-        query += "SET";
-        query += objTosql(colValues);
-        query += "WHERE";
+        query += " SET ";
+        query += objToSql(colValues);
+        query += " WHERE ";
         query += condition;
+        console.log("update query: " +query)
         connection.query(query, function(err, result){
             cb(result);
         })
-    }
-}
-var objTosql = function(colValues){
-    var arr =[];
-    for(var key in colValues){
-        var value = colValues[key];
-        //{bala nekkanti => 'bala nekkanti'}
-        if(Object.hasOwnProperty.call(colValues, key)){
-            if(typeof value === "string" && value.indexOf(" ")>=0){
-                value ="'" +value +"'";
+    },
+    create: function (table, columns, values, cb) {
+        var query = "INSERT INTO " + table;
+        query += " (";
+        query += columns.toString();
+        query += ") ";
+        query += "VALUES (";
+        query += printQuestionMarks(values.length);
+        query += ") ";
+        console.log("create query: " +query);
+        connection.query(query, values, function(err, results){
+            if(err){
+                throw err;
             }
-            //{devore: 0 => devore = 0}
-            arr.push(key +"=" +value);
-        }
+            cb(results);
+        })
     }
-    return arr.toString();
 }
+//Helper function to convert object key/value pairs to SQL syntax
+ function objToSql(ob) {
+   var arr = [];
+   // loop through the keys and push the key/value as a string int arr
+   for (var key in ob) {
+     var value = ob[key];
+     // check to skip hidden properties
+     if (Object.hasOwnProperty.call(ob, key)) {
+       // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+       if (typeof value === "string" && value.indexOf(" ") >= 0) {
+         value = "'" + value + "'";
+       }
+       // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
+       // e.g. {sleepy: true} => ["sleepy=true"]
+       arr.push(key + "=" + value);
+     }
+   }
+   // translate array of strings to a single comma-separated string
+   return arr.toString();
+ }
 
+ function printQuestionMarks(num) {
+    var arr = [];
+  
+    for (var i = 0; i < num; i++) {
+      arr.push("?");
+    }
+  
+    return arr.toString();
+  }
 module.exports = orm;

@@ -6,7 +6,7 @@ $(document).ready(function(){
         console.log(" id of the burger : " +burger_id);
         $.ajax({
             method: "PUT",
-            url: "/burgers/" +burger_id
+            url: "/burgers/" + burger_id
         }).then(function(data){
             // reload page and add burger to right side
             location.reload();
