@@ -86,7 +86,7 @@ No installation is required.
 
 
 ### Screenshots
-![burger_screenshot][public/assets/img/burger_screen.png]
+![burger_screenshot](./public/assets/img/burger_screen.png)
 
 
 ## Contact
