@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $(".devour-form").on("submit", function(event){
-        console.log("inside on click devour")
+        console.log("inside on click devour form")
         event.preventDefault();
         var burger_id = $(this).children(".burger_id").val();
         console.log(" id of the burger : " + burger_id);

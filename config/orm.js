@@ -1,18 +1,18 @@
 var connection = require ('./connection.js');
 var orm = {
     all: function (tableInput, cb){
-        connection.query('SELECT * FROM '+ tableInput+';', function (err,result){
+        connection.query('SELECT * FROM '+ tableInput + ';', function (err,result){
             if (err) throw err;
             cb(result)
         })
     },
     update: function (table, colValues, condition, cb) {
-        var query = "UPDATE  " +table;
+        var query = "UPDATE  " + table;
         query += " SET ";
         query += objToSql(colValues);
         query += " WHERE ";
         query += condition;
-        console.log("update query: " +query)
+        console.log("update query: " + query)
         connection.query(query, function(err, result){
             cb(result);
         })
@@ -25,7 +25,7 @@ var orm = {
         query += "VALUES (";
         query += printQuestionMarks(values.length);
         query += ") ";
-        console.log("create query: " +query);
+        console.log("create query: " + query);
         connection.query(query, values, function(err, results){
             if(err){
                 throw err;
@@ -58,11 +58,10 @@ var orm = {
 
  function printQuestionMarks(num) {
     var arr = [];
-  
     for (var i = 0; i < num; i++) {
       arr.push("?");
     }
-  
     return arr.toString();
   }
+
 module.exports = orm;

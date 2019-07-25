@@ -12,7 +12,7 @@ router.get ('/', function(req,res){
 router.put ('/burgers/:id', function(req, res) {
     console.log("put request in controllers")
     var id = req.params.id;
-    var condition = "id = " +id;
+    var condition = "id = " + id;
     burger.update ({
         devoured: 1
     },condition, function(data){
@@ -31,4 +31,4 @@ router.post ('/burgers/create', function(req, res) {
 })
 
 
-module.exports =router;
+module.exports = router;
