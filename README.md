@@ -16,6 +16,8 @@ This is a burger logger using MySQL, Node, Express, Handlebars and an ORM. It is
 
 Users of the app can create a burger and add it to a database, then devour the burger, which updates the devoured state in the database. After updating the state, the DOM will be updated to display the results on the webpage.
 
+[App website](https://eat-da-burger-24.herokuapp.com/)
+
 The file structure is set up like the following:
 ```
 .
@@ -79,7 +81,7 @@ No installation is required.
 
 
 ## Usage
-1. Visit  the [app website]()
+1. Visit  the [app website](https://eat-da-burger-24.herokuapp.com/)
 2. In the form field, enter a burger name.
 3. Click `Add a Burger` to add a burger to the ORM model and display it on the DOM.
 4. Click `Devour this!` below a burger to devour it, and watch it move to the devoured list.
