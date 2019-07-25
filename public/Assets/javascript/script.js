@@ -3,7 +3,7 @@ $(document).ready(function(){
         console.log("inside on click devour")
         event.preventDefault();
         var burger_id = $(this).children(".burger_id").val();
-        console.log(" id of the burger : " +burger_id);
+        console.log(" id of the burger : " + burger_id);
         $.ajax({
             method: "PUT",
             url: "/burgers/" + burger_id
